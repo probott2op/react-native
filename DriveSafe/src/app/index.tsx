@@ -1,407 +1,243 @@
-import React, { useState, useEffect } from 'react';
+// src/app/index.tsx (Login Page)
+import React, { useState } from 'react';
 import {
   View,
   Text,
+  TextInput,
   TouchableOpacity,
-  ScrollView,
-  Dimensions,
   StyleSheet,
-  Animated,
-  PanResponder,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
+import { Link, router } from 'expo-router';
+import { useAuth } from '../context/AuthContext';
+import { Ionicons } from '@expo/vector-icons';
 
-const { width, height } = Dimensions.get('window');
+export default function LoginScreen() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const { login } = useAuth();
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  animatedValue: Animated.Value;
-}
-
-interface FloatingElement {
-  id: number;
-  x: number;
-  y: number;
-  animatedValue: Animated.Value;
-}
-
-const DriveSafeHomepage = ({ navigation }: { navigation: any }) => {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [floatingElements, setFloatingElements] = useState<FloatingElement[]>([]);
-  const mousePos = useState(new Animated.ValueXY())[0];
-
-  useEffect(() => {
-    // Generate animated particles
-    const newParticles: Particle[] = [];
-    for (let i = 0; i < 20; i++) {
-      const animatedValue = new Animated.Value(0);
-      newParticles.push({
-        id: i,
-        x: Math.random() * width,
-        y: Math.random() * height,
-        animatedValue,
-      });
-
-      // Start floating animation
-      const floatAnimation = () => {
-        Animated.sequence([
-          Animated.timing(animatedValue, {
-            toValue: 1,
-            duration: 3000 + Math.random() * 2000,
-            useNativeDriver: true,
-          }),
-          Animated.timing(animatedValue, {
-            toValue: 0,
-            duration: 3000 + Math.random() * 2000,
-            useNativeDriver: true,
-          }),
-        ]).start(() => floatAnimation());
-      };
-      floatAnimation();
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
     }
-    setParticles(newParticles);
 
-    // Generate floating elements
-    const newFloatingElements: FloatingElement[] = [];
-    for (let i = 0; i < 3; i++) {
-      const animatedValue = new Animated.Value(0);
-      newFloatingElements.push({
-        id: i,
-        x: Math.random() * width,
-        y: Math.random() * height,
-        animatedValue,
-      });
-
-      // Start floating animation
-      Animated.loop(
-        Animated.timing(animatedValue, {
-          toValue: 1,
-          duration: 8000 + i * 2000,
-          useNativeDriver: true,
-        })
-      ).start();
+    setIsLoading(true);
+    try {
+      await login(email, password);
+      router.replace('/(auth)/dashboard' as any);
+    } catch (error) {
+      Alert.alert('Login Failed', 'Invalid credentials. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
-    setFloatingElements(newFloatingElements);
-  }, []);
-
-  const handleButtonPress = (path: string) => {
-    console.log(`Navigate to: ${path}`);
-    // Navigate to the appropriate screen
-    if (path === '/login') {
-      navigation.navigate('Login');
-    } else if (path === '/register') {
-      navigation.navigate('Register');
-    }
-  };
-
-  const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderMove: (evt) => {
-      const { locationX, locationY } = evt.nativeEvent;
-      mousePos.setValue({
-        x: (locationX / width - 0.5) * 20,
-        y: (locationY / height - 0.5) * 20,
-      });
-    },
-  });
-
-  const renderParticle = (particle: Particle) => {
-    const translateY = particle.animatedValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, -15],
-    });
-
-    const opacity = particle.animatedValue.interpolate({
-      inputRange: [0, 0.5, 1],
-      outputRange: [0.4, 0.8, 0.4],
-    });
-
-    return (
-      <Animated.View
-        key={particle.id}
-        style={[
-          styles.particle,
-          {
-            left: particle.x,
-            top: particle.y,
-            transform: [{ translateY }],
-            opacity,
-          },
-        ]}
-      />
-    );
-  };
-
-  const renderFloatingElement = (element: FloatingElement) => {
-    const translateX = element.animatedValue.interpolate({
-      inputRange: [0, 0.25, 0.5, 0.75, 1],
-      outputRange: [0, 10, -5, -8, 0],
-    });
-
-    const translateY = element.animatedValue.interpolate({
-      inputRange: [0, 0.25, 0.5, 0.75, 1],
-      outputRange: [0, -10, -15, 8, 0],
-    });
-
-    return (
-      <Animated.View
-        key={element.id}
-        style={[
-          styles.floatingElement,
-          {
-            left: element.x,
-            top: element.y,
-            transform: [{ translateX }, { translateY }],
-          },
-        ]}
-      />
-    );
   };
 
   return (
-    <ScrollView style={styles.container} {...panResponder.panHandlers}>
-      <View style={styles.gradient}>
-        {/* Background Particles */}
-        {particles.map(renderParticle)}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Welcome Back</Text>
+          <Text style={styles.subtitle}>Sign in to your account</Text>
+        </View>
 
-        {/* Floating Elements */}
-        {floatingElements.map(renderFloatingElement)}
+        <View style={styles.form}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your email"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoComplete="email"
+            />
+          </View>
 
-        {/* Main Content */}
-        <View style={styles.heroSection}>
-          {/* Content */}
-          <View style={styles.heroContent}>
-            <Text style={styles.title}>Welcome to DriveSafeAI</Text>
-
-            <Text style={styles.subtitle}>
-              Revolutionizing road safety with cutting-edge AI technology. Our
-              platform provides intelligent risk assessment, real-time safety
-              monitoring, and smart insurance management to keep you protected on
-              every journey.
-            </Text>
-
-            <View style={styles.buttonContainer}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.passwordInput}
+                placeholder="Enter your password"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!showPassword}
+                autoCapitalize="none"
+              />
               <TouchableOpacity
-                style={styles.primaryButton}
-                onPress={() => handleButtonPress('/login')}
-                activeOpacity={0.8}
+                style={styles.eyeIcon}
+                onPress={() => setShowPassword(!showPassword)}
               >
-                <Text style={styles.primaryButtonText}>Get Started</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.secondaryButton}
-                onPress={() => handleButtonPress('/register')}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.secondaryButtonText}>Learn More</Text>
-              </TouchableOpacity>
-            </View>
-
-            {/* Features */}
-            <View style={styles.featuresContainer}>
-              <TouchableOpacity style={styles.featureCard} activeOpacity={0.9}>
-                <View style={styles.featureIcon}>
-                  <Text style={styles.featureEmoji}>🚗</Text>
-                </View>
-                <Text style={styles.featureTitle}>Smart Monitoring</Text>
-                <Text style={styles.featureDescription}>
-                  Real-time driving analysis and safety alerts
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.featureCard} activeOpacity={0.9}>
-                <View style={styles.featureIcon}>
-                  <Text style={styles.featureEmoji}>🧠</Text>
-                </View>
-                <Text style={styles.featureTitle}>AI Risk Assessment</Text>
-                <Text style={styles.featureDescription}>
-                  Predictive safety scoring and recommendations
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.featureCard} activeOpacity={0.9}>
-                <View style={styles.featureIcon}>
-                  <Text style={styles.featureEmoji}>🛡️</Text>
-                </View>
-                <Text style={styles.featureTitle}>Insurance Integration</Text>
-                <Text style={styles.featureDescription}>
-                  Seamless policy management and claims
-                </Text>
+                <Ionicons
+                  name={showPassword ? 'eye-off' : 'eye'}
+                  size={24}
+                  color="#666"
+                />
               </TouchableOpacity>
             </View>
           </View>
 
-          {/* Hero Visual */}
-          <View style={styles.heroVisual}>
-            <View style={styles.heroImage}>
-              <Text style={styles.heroEmoji}>🤖</Text>
-              <Text style={styles.heroImageText}>
-                AI-Powered{'\n'}Driving Safety{'\n'}Technology
-              </Text>
-            </View>
+          <TouchableOpacity style={styles.forgotPassword}>
+            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.loginButton, isLoading && styles.disabledButton]}
+            onPress={handleLogin}
+            disabled={isLoading}
+          >
+            <Text style={styles.loginButtonText}>
+              {isLoading ? 'Signing In...' : 'Sign In'}
+            </Text>
+          </TouchableOpacity>
+
+          <View style={styles.divider}>
+            <View style={styles.line} />
+            <Text style={styles.orText}>or</Text>
+            <View style={styles.line} />
+          </View>
+
+          <View style={styles.signupContainer}>
+            <Text style={styles.signupText}>Don't have an account? </Text>
+            <Link href={'register' as any} asChild>
+              <TouchableOpacity>
+                <Text style={styles.signupLink}>Sign Up</Text>
+              </TouchableOpacity>
+            </Link>
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f8f9fa',
   },
-  gradient: {
-    minHeight: height,
-    position: 'relative',
-    backgroundColor: '#667eea',
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    padding: 24,
   },
-  particle: {
-    position: 'absolute',
-    width: 3,
-    height: 3,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
-    borderRadius: 1.5,
-  },
-  floatingElement: {
-    position: 'absolute',
-    width: 30,
-    height: 30,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: 15,
-  },
-  heroSection: {
-    flex: 1,
-    maxWidth: 1200,
-    alignSelf: 'center',
-    padding: 20,
-    paddingTop: 60,
-    gap: 30,
-  },
-  heroContent: {
-    flex: 1,
-    zIndex: 2,
+  header: {
+    alignItems: 'center',
+    marginBottom: 48,
   },
   title: {
-    fontSize: Math.min(width * 0.08, 48),
-    fontWeight: '700',
-    marginBottom: 20,
-    color: 'white',
-    textShadowColor: 'rgba(0,0,0,0.3)',
-    textShadowOffset: { width: 0, height: 4 },
-    textShadowRadius: 20,
-    lineHeight: Math.min(width * 0.09, 52),
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: 8,
   },
   subtitle: {
-    fontSize: 18,
-    marginBottom: 30,
-    color: 'rgba(255, 255, 255, 0.9)',
-    lineHeight: 28,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    gap: 15,
-    marginBottom: 30,
-    flexWrap: 'wrap',
-  },
-  primaryButton: {
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    backgroundColor: '#ff6b6b',
-    borderRadius: 25,
-    shadowColor: '#ff6b6b',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
-    shadowRadius: 25,
-    elevation: 8,
-  },
-  primaryButtonText: {
-    color: 'white',
     fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
+    color: '#666',
   },
-  secondaryButton: {
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: 25,
-    borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
-  },
-  secondaryButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  featuresContainer: {
-    gap: 20,
-    marginTop: 20,
-  },
-  featureCard: {
-    padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
-  },
-  featureIcon: {
-    width: 60,
-    height: 60,
-    backgroundColor: '#4facfe',
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 15,
-  },
-  featureEmoji: {
-    fontSize: 24,
-  },
-  featureTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'white',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  featureDescription: {
-    fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.8)',
-    textAlign: 'center',
-    lineHeight: 20,
-  },
-  heroVisual: {
-    flex: 1,
-    marginTop: 30,
-  },
-  heroImage: {
+  form: {
     width: '100%',
-    height: 300,
-    borderRadius: 20,
+  },
+  inputContainer: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1a1a1a',
+    marginBottom: 8,
+  },
+  input: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#e1e5e9',
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    fontSize: 16,
+    color: '#1a1a1a',
+  },
+  passwordContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#e1e5e9',
+    borderRadius: 12,
+  },
+  passwordInput: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    fontSize: 16,
+    color: '#1a1a1a',
+  },
+  eyeIcon: {
+    padding: 16,
+  },
+  forgotPassword: {
+    alignSelf: 'flex-end',
+    marginBottom: 32,
+  },
+  forgotPasswordText: {
+    color: '#007AFF',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  loginButton: {
+    backgroundColor: '#007AFF',
+    borderRadius: 12,
+    paddingVertical: 16,
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  disabledButton: {
+    backgroundColor: '#ccc',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  divider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#e1e5e9',
+  },
+  orText: {
+    marginHorizontal: 16,
+    color: '#666',
+    fontSize: 14,
+  },
+  signupContainer: {
+    flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#764ba2',
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 20 },
-    shadowOpacity: 0.3,
-    shadowRadius: 60,
-    elevation: 20,
+    alignItems: 'center',
   },
-  heroEmoji: {
-    fontSize: 60,
-    marginBottom: 15,
+  signupText: {
+    color: '#666',
+    fontSize: 16,
   },
-  heroImageText: {
-    color: 'white',
-    fontSize: 18,
-    textAlign: 'center',
-    lineHeight: 26,
-    fontWeight: '500',
+  signupLink: {
+    color: '#007AFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
-
-export default DriveSafeHomepage;
