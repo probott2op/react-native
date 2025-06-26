@@ -1,7 +1,7 @@
 // src/api/client.ts
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080'; // Replace with your actual API URL
+const API_BASE_URL = 'http://192.168.1.9:8080/api';
 
 class ApiClient {
   private baseURL: string;
@@ -10,89 +10,51 @@ class ApiClient {
     this.baseURL = baseURL;
   }
 
-  private async getAuthToken(): Promise<string | null> {
+  private async handleRequest<T>(request: Promise<any>): Promise<T> {
     try {
-      return await AsyncStorage.getItem('authToken');
-    } catch (error) {
-      console.error('Error getting auth token:', error);
-      return null;
-    }
-  }
-
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<T> {
-    const url = `${this.baseURL}${endpoint}`;
-    const token = await this.getAuthToken();
-
-    const config: RequestInit = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...(token && { Authorization: `Bearer ${token}` }),
-        ...options.headers,
-      },
-      ...options,
-    };
-
-    try {
-      const response = await fetch(url, config);
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          // Token might be expired, redirect to login
-          await AsyncStorage.removeItem('authToken');
-          await AsyncStorage.removeItem('user');
-          // You might want to trigger a logout here
-          throw new Error('Authentication failed');
-        }
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
+      const response = await request;
+      console.log(response);
+      return response.data;
+    } catch (error: any) {
       console.error('API request failed:', error);
-      throw error;
+      
+      if (error.response?.status === 401) {
+        throw new Error('Authentication failed');
+      }
+      
+      throw new Error(`HTTP error! status: ${error.response?.status || 'Network error'}`);
     }
   }
 
   // Auth endpoints
-  async login(email: string, password: string) {
-    return this.request('/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-    });
+  async login(email: string, password: string): Promise<any> {
+    return this.handleRequest(
+      axios.post(`${this.baseURL}/login`, { 'email': email, 'password': password })
+    );
   }
 
-  async register(name: string, email: string, password: string) {
-    return this.request('/register', {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password }),
-    });
-  }
-
-  // Protected endpoints
-  async getProfile() {
-    return this.request('/user/profile');
-  }
-
-  async updateProfile(data: any) {
-    return this.request('/user/profile', {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
-  }
-
-  // Add more API methods as needed
-  async getData() {
-    return this.request('/data');
-  }
-
-  async postData(data: any) {
-    return this.request('/data', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
+  async register(
+    fullName: string, 
+    email: string, 
+    password: string, 
+    chassisNo: string, 
+    vehicleNo: string, 
+    drivingLicense: string, 
+    model: string, 
+    manufacturer: string
+  ): Promise<any> {
+    return this.handleRequest(
+      axios.post(`${this.baseURL}/register`, {
+        'fullName': fullName,
+        'email': email,
+        'password': password,
+        'chasisNo': chassisNo,
+        'vehicleNo': vehicleNo,
+        'drivingLicense': drivingLicense,
+        'model': model,
+        'manufacturer': manufacturer
+      })
+    );
   }
 }
 

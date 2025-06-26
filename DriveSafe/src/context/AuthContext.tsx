@@ -1,6 +1,7 @@
 // src/context/AuthContext.tsx
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { apiClient } from '../api/client';
 
 interface User {
   id: string;
@@ -13,7 +14,7 @@ interface AuthContextType {
   token: string | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  register: (fullName: string, email: string, password: string, chassisNo: string, vehicleNo: string, drivingLicense: string, model: string, manufacturer: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -54,20 +55,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch('YOUR_API_BASE_URL/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response: Response = await apiClient.login(email, password);
 
       if (!response.ok) {
         throw new Error('Login failed');
       }
 
       const data = await response.json();
-      
+      console.log('Login response:', data);
+      console.log('response:');
+      console.log(response);
       await AsyncStorage.setItem('authToken', data.token);
       await AsyncStorage.setItem('user', JSON.stringify(data.user));
       
@@ -78,15 +75,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (fullName: string, email: string, password: string, chassisNo: string, vehicleNo: string, drivingLicense: string, model: string, manufacturer: string) => {
     try {
-      const response = await fetch('YOUR_API_BASE_URL/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
+      const response: Response = await apiClient.register(fullName, email, password, chassisNo, vehicleNo, drivingLicense, model, manufacturer);
 
       if (!response.ok) {
         throw new Error('Registration failed');

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import UserService from '../../services/UserService';
+import UserService from '../../api/Dashboard';
 import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');

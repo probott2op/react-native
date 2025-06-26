@@ -60,7 +60,7 @@ public class DriveSafeServiceImpl implements DriveSafeService {
         user.setDrivingLicense(dto.drivingLicense);
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
         user.setPassword(encoder.encode(dto.password));
-        userRepo.save(user);
+
 
         Vehicle vehicle = new Vehicle();
         vehicle.setChasisNo(dto.chasisNo);
@@ -69,7 +69,10 @@ public class DriveSafeServiceImpl implements DriveSafeService {
         vehicle.setManufacturer(dto.manufacturer);
         vehicle.setUser(user);
 
+        user.setVehicle(vehicle);
+
         vehicleRepo.save(vehicle);
+        userRepo.save(user);
 
         return new UserResponseDTO(user.getId(), user.getEmail(), vehicle.getVehicleNo(), user.getFullName());
     }
