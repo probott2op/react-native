@@ -71,8 +71,9 @@ public class DriveSafeServiceImpl implements DriveSafeService {
 
         user.setVehicle(vehicle);
 
-        vehicleRepo.save(vehicle);
+
         userRepo.save(user);
+        vehicleRepo.save(vehicle);
 
         return new UserResponseDTO(user.getId(), user.getEmail(), vehicle.getVehicleNo(), user.getFullName());
     }
