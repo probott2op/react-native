@@ -4,7 +4,7 @@ import { Stack, router } from 'expo-router';
 import { AuthProvider, useAuth } from '../context/AuthContext';
 
 function RootLayoutNav() {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, logout } = useAuth();
 
   useEffect(() => {
     if (!isLoading) {
@@ -13,6 +13,7 @@ function RootLayoutNav() {
         router.replace('/(auth)/dashboard');
       } else {
         // User is not authenticated, redirect to login
+        logout(); // Ensure to clear any session data
         router.replace('/');
       }
     }

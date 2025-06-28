@@ -2,12 +2,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { apiClient } from '../api/client';
-
-interface User {
-  id: string;
-  email: string;
-  name: string;
-}
+import { AxiosResponse } from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import { MyJwtPayload } from '../types/JwtPayload';
+import { User } from '../types/User';
+import UserService from '../services/UserService';
 
 interface AuthContextType {
   user: User | null;
@@ -41,8 +40,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const storedToken = await AsyncStorage.getItem('authToken');
       const storedUser = await AsyncStorage.getItem('user');
-      
-      if (storedToken && storedUser) {
+      const expiresAt = storedUser ? JSON.parse(storedUser).exp : null;
+      if (storedToken && storedUser && !isTokenexpired(expiresAt)) {
         setToken(storedToken);
         setUser(JSON.parse(storedUser));
       }
@@ -53,23 +52,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const isTokenexpired = (exp: number): boolean => {
+    return Date.now() > exp * 1000;
+  };
+
   const login = async (email: string, password: string) => {
     try {
-      const response: Response = await apiClient.login(email, password);
+      const response: AxiosResponse = await apiClient.login(email, password);
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error('Login failed');
       }
 
-      const data = await response.json();
-      console.log('Login response:', data);
-      console.log('response:');
-      console.log(response);
-      await AsyncStorage.setItem('authToken', data.token);
-      await AsyncStorage.setItem('user', JSON.stringify(data.user));
-      
-      setToken(data.token);
-      setUser(data.user);
+      const data = response.data;
+      await AsyncStorage.setItem('authToken', data);
+      const decoded = jwtDecode(data) as MyJwtPayload;
+      setToken(data);
+      if (data) {
+        const user = await UserService.getUserDetails(decoded.userId, data);
+        await AsyncStorage.setItem('user', JSON.stringify(user));
+
+        setUser(user);
+      }
     } catch (error) {
       throw error;
     }
@@ -77,19 +81,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (fullName: string, email: string, password: string, chassisNo: string, vehicleNo: string, drivingLicense: string, model: string, manufacturer: string) => {
     try {
-      const response: Response = await apiClient.register(fullName, email, password, chassisNo, vehicleNo, drivingLicense, model, manufacturer);
+      const response: AxiosResponse = await apiClient.register(fullName, email, password, chassisNo, vehicleNo, drivingLicense, model, manufacturer);
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error('Registration failed');
       }
-
-      const data = await response.json();
-      
-      await AsyncStorage.setItem('authToken', data.token);
-      await AsyncStorage.setItem('user', JSON.stringify(data.user));
-      
-      setToken(data.token);
-      setUser(data.user);
     } catch (error) {
       throw error;
     }

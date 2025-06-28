@@ -30,9 +30,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@Transactional
 public class DriveSafeServiceImpl implements DriveSafeService {
 
     @Autowired private UserRepository userRepo;

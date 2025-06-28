@@ -13,8 +13,7 @@ class ApiClient {
   private async handleRequest<T>(request: Promise<any>): Promise<T> {
     try {
       const response = await request;
-      console.log(response);
-      return response.data;
+      return response;
     } catch (error: any) {
       console.error('API request failed:', error);
       

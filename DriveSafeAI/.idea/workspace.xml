@@ -5,71 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14986295-19a6-4f7b-b96a-a9e94411574d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../DriveSafe/.idea/DriveSafe.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DriveSafe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DriveSafe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DriveSafe/src/api/Dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/src/api/Dashboard.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DriveSafe/src/api/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/src/api/client.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DriveSafe/src/app/(auth)/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/src/app/(auth)/dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DriveSafe/src/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/src/app/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DriveSafe/src/app/register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/src/app/register.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DriveSafe/src/context/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DriveSafe/src/context/AuthContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DriveSafeAI/service/impl/DriveSafeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DriveSafeAI/service/impl/DriveSafeServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/DriveSafeAiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/DriveSafeAiApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/controller/DriveSafeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/controller/DriveSafeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/DriscScoreRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/DriscScoreRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/DriveScoreRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/DriveScoreRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/InsuranceClaimRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/InsuranceClaimRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/InsurancePolicyRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/InsurancePolicyRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/NotificationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/NotificationRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/PremiumCalculationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/PremiumCalculationRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/RiskCategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/RiskCategoryRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/TripRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/TripRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/TripSummaryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/TripSummaryRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/VehicleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dao/VehicleRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/DriscScoreDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/DriscScoreDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/InsuranceClaimDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/InsuranceClaimDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/InsurancePolicyDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/InsurancePolicyDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/LiveTripDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/LiveTripDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/LoginRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/LoginRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLFeedbackResponse$MLFeedbackResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLFeedbackResponse$MLFeedbackResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLFeedbackResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLFeedbackResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLPredictionResponse$Prediction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLPredictionResponse$Prediction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLPredictionResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/MLPredictionResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/NotificationDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/NotificationDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/PremiumCalculationDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/PremiumCalculationDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/TripRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/TripRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/TripResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/TripResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/TripSummaryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/TripSummaryDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/UserRegisterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/UserRegisterDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/UserResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/dto/UserResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/ClaimStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/ClaimStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/DriscScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/DriscScore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/DriveScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/DriveScore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/InsuranceClaim.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/InsuranceClaim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/InsurancePolicy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/InsurancePolicy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/Notification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/PolicyStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/PolicyStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/PremiumCalculation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/PremiumCalculation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/RiskCategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/RiskCategory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/TripData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/TripData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/TripSummary$TripSummaryBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/TripSummary$TripSummaryBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/TripSummary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/TripSummary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/Vehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/entity/Vehicle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/security/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/security/JwtFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/security/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/security/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/security/WebConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/DriveSafeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/DriveSafeService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/impl/DriveSafeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/impl/DriveSafeServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/impl/MLModelClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/impl/MLModelClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/security/JWTService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/security/JWTService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/security/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/security/LoginService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/security/UserPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/service/security/UserPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/util/TripSessionBuffer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DriveSafeAI/util/TripSessionBuffer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/DriveSafeAI/DriveSafeAiApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,28 +44,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.DriveSafeAiApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Jaiwant/repos/react-native/DriveSafeAI",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DriveSafeAiApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Jaiwant/repos/react-native/DriveSafeAI&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="DriveSafeAiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="DriveSafeAI" />
@@ -150,7 +99,12 @@
       <workItem from="1750856782149" duration="2616000" />
       <workItem from="1750901069218" duration="3423000" />
       <workItem from="1750928236887" duration="644000" />
-      <workItem from="1750928893932" duration="2118000" />
+      <workItem from="1750928893932" duration="3352000" />
+      <workItem from="1750943296663" duration="2277000" />
+      <workItem from="1751011864286" duration="678000" />
+      <workItem from="1751012553405" duration="2409000" />
+      <workItem from="1751030244611" duration="2502000" />
+      <workItem from="1751070157241" duration="1708000" />
     </task>
     <servers />
   </component>

@@ -321,7 +321,7 @@ export default function RegisterScreen() {
         formData.model, 
         formData.manufacturer
       );
-      router.replace('/(auth)/dashboard');
+      router.replace('/');
     } catch (error) {
       Alert.alert('Registration Failed', 'Unable to create account. Please try again.');
     } finally {
